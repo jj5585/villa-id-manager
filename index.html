@@ -83,17 +83,6 @@
         } finally { setLoading(false); }
       };
 
-      const continueAsGuest = async () => {
-        setLoading(true); setError('');
-        try {
-          await auth.signInAnonymously();
-          onAuthSuccess();
-        } catch (e) {
-          setError(e.message || 'Anonymous sign-in failed');
-          console.error('anon sign-in error', e);
-        } finally { setLoading(false); }
-      };
-
       return (
         <div className="min-h-screen flex items-center justify-center p-6">
           <div className="w-full max-w-md bg-white rounded-xl shadow p-6">
@@ -122,7 +111,6 @@
                 <GoogleIcon/> Sign in with Google
               </button>
 
-              <button onClick={continueAsGuest} disabled={loading} className="w-full bg-gray-100 py-2 rounded">Continue as Guest</button>
 
               <div className="text-sm text-center text-gray-600">
                 <button onClick={() => setMode(m => m==='signup' ? 'login' : 'signup')} className="text-indigo-600 hover:underline">
